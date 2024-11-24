@@ -1,6 +1,6 @@
 class Solution {
 
-    private void getAllPermutations(int[] nums, List<List<Integer>> permutations, List<Integer> tempList) {
+    private void backtrack(int[] nums, List<List<Integer>> permutations, List<Integer> tempList) {
         if (tempList.size() == nums.length)
             permutations.add(new ArrayList<>(tempList));
         else {
@@ -10,7 +10,7 @@ class Solution {
                     continue;
                 tempList.add(nums[i]);
                 System.out.println("tempList: " + tempList);
-                getAllPermutations(nums, permutations, tempList);
+                backtrack(nums, permutations, tempList);
                 tempList.remove(tempList.size() - 1);
                 System.out.println("tempList 2 : " + tempList);
             }
@@ -19,7 +19,7 @@ class Solution {
 
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> permutations = new ArrayList<>();
-        getAllPermutations(nums, permutations, new ArrayList<>());
+        backtrack(nums, permutations, new ArrayList<>());
         return permutations;
     }
 }
